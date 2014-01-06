@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>python4oceanographers</title>
+  <meta name="author" content="Filipe Fernandes">
+
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+        title="python4oceanographers Atom Feed" />
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="/favicon.png" rel="icon">
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+
+  <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head><body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">python4oceanographers</a></h1>
+    <h2>Learn python with examples applied to marine sciences.</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss">RSS</a></li>
+</ul>
+
+<!-- TODO: add search here
+<form action="" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+-->
+
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+    <li><a href="/archives.html">Archives</a></li>
+    <li><a href="http://ocefpaf.tiddlyspot.com/">Home Page</a></li>
+    <!-- TODO: add categories here? -->
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">python-gsw</h1>
+      <p class="meta"><time datetime="2013-07-01T13:42:00" pubdate>Jul 01, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>The <a href="http://code.google.com/p/python-gsw/">python-gsw</a> module, used in some of
+my previous posts, is an incomplete and unstable version for the
+<a href="http://www.teos-10.org/software.htm#1">Matlab gibbs toolbox</a>.  Because it is
+in constant development the best way to obtain it is to go straight to the
+<a href="http://code.google.com/p/python-gsw/source/browse/">source code</a>.</p>
+<p>The TEOS-10 <a href="http://www.teos-10.org/pubs/TEOS-10_Primer.pdf">primer</a> is an
+excellent place to start before using this toolbox.  It supersedes the now
+obsolete <a href="http://code.google.com/p/python-seawater/">EOS-80</a> seawater module.</p>
+<p>To obtain the latest version of this module you must install <a href="http://mercurial.selenic.com/">mercurial</a> first, then you'll be able to clone the
+repository:</p>
+<div class="highlight"><pre>hg clone https://code.google.com/p/python-gsw/
+</pre></div>
+
+
+<p>Then just add the <strong>python-gsw/gsw</strong> directory into your <strong>PYTHONPATH</strong> so you
+can import it from anywhere.  To update just go into that directory and type:</p>
+<div class="highlight"><pre>hg pull
+hg update
+</pre></div>
+
+
+<p>My work-flow is to download all modules that are in a development phase into a
+"pymodules" directory and then create a <code>symlink</code> inside a local folder that is
+added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
+<p>Here is a small example of some functions present in the module:</p>
+<p>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[12]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Derive.</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gsw</span><span class="o">.</span><span class="n">z_from_p</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<span class="c"># ctm [mS/cm] = ctm [S/m] * 10</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SP_from_C</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;c0S/m&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SA_from_SP</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">CT_from_t</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sigma0_CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sigma0_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sound&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sound_speed_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_GP_from_SP_pt</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<span class="c"># Does&#39;t fit the DataFrame because the index in at the middle (p_mid) point of the original data.</span>
+<span class="n">N2</span><span class="p">,</span> <span class="n">p_mid</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">Nsquared</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;aou&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">o2sat</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sbeox0Mm/Kg&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+
+</div></p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Filipe Fernandes</span>
+  </span>
+<time datetime="2013-07-01T13:42:00" pubdate>Jul 01, 2013</time>  <span class="categories">
+    <a class="category" href="/tag/data-analysis.html">data analysis</a>
+    <a class="category" href="/tag/hydrography.html">hydrography</a>
+    <a class="category" href="/tag/seawater.html">seawater</a>
+  </span>
+</p>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/blog/2013/12/16/utm/">Convert to and from UTM coordinates with pyproj</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/12/09/zoom/">Matplotlib zoomed axis</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/12/02/chem/">Chemical Molecule Drawing with rdkit</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/11/25/waves/">Wave animations</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/11/18/ompa/">OMPA lecture</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/data-analysis.html">Data analysis</a></li>
+        <li><a href="/category/lecture.html">Lecture</a></li>
+        <li><a href="/category/mapping.html">mapping</a></li>
+        <li><a href="/category/misc.html">Misc</a></li>
+        <li><a href="/category/plotting.html">Plotting</a></li>
+        <li><a href="/category/teaching.html">Teaching</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/hydrography.html">hydrography</a>,    <a href="/tag/ephem.html">ephem</a>,    <a href="/tag/data-visualization.html">data visualization</a>,    <a href="/tag/data-analysis.html">data analysis</a>,    <a href="/tag/aviso.html">AVISO</a>,    <a href="/tag/visualization.html">visualization</a>,    <a href="/tag/georeference.html">georeference</a>,    <a href="/tag/python-ctd.html">python-ctd</a>,    <a href="/tag/data-visualization-ephem.html">data visualization ephem</a>,    <a href="/tag/animation.html">animation</a>,    <a href="/tag/test.html">test</a>,    <a href="/tag/lecture.html">lecture</a>,    <a href="/tag/plotting.html">plotting</a>,    <a href="/tag/plotting-xbt.html">plotting xbt</a>,    <a href="/tag/map.html">map</a>,    <a href="/tag/downloading.html">downloading</a>,    <a href="/tag/seawater.html">seawater</a>,    <a href="/tag/ssh.html">SSH</a>,    <a href="/tag/teaching.html">teaching</a>,    <a href="/tag/lecture-animations-waves.html">lecture animations waves</a>,    <a href="/tag/spikes.html">spikes</a>,    <a href="/tag/plotting-lecture.html">plotting lecture</a>,    <a href="/tag/pandas.html">pandas</a>,    <a href="/tag/ctd.html">CTD</a>,    <a href="/tag/inset.html">inset</a>,    <a href="/tag/basemap.html">basemap</a>  </section>
+
+
+
+  <section>
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+      <li class="loading">Status updating...</li>
+    </ul>
+      <a href="https://github.com/ocefpaf">@ocefpaf</a> on GitHub
+    <script type="text/javascript">
+      $.domReady(function(){
+          if (!window.jXHR){
+              var jxhr = document.createElement('script');
+              jxhr.type = 'text/javascript';
+              jxhr.src = '/theme/js/jXHR.js';
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(jxhr, s);
+          }
+
+          github.showRepos({
+              user: 'ocefpaf',
+              count: 5,
+              skip_forks: true,
+              target: '#gh_repos'
+          });
+      });
+    </script>
+    <script src="/theme/js/github.js" type="text/javascript"> </script>
+  </section>
+
+    <section>
+        <h1>Blogroll</h2>
+        <ul>
+            <li><a href="http://pyaos.johnny-lin.com/" target="_blank">PyAOS</a></li>
+            <li><a href="http://drclimate.wordpress.com/" target="_blank">drclimate</a></li>
+            <li><a href="http://software-carpentry.org/blog/index.html" target="_blank">Software Carpentry</a></li>
+        </ul>
+    </section>
+</aside><aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/blog/2013/12/16/utm/">Convert to and from UTM coordinates with pyproj</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/12/09/zoom/">Matplotlib zoomed axis</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/12/02/chem/">Chemical Molecule Drawing with rdkit</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/11/25/waves/">Wave animations</a>
+      </li>
+      <li class="post">
+          <a href="/blog/2013/11/18/ompa/">OMPA lecture</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/data-analysis.html">Data analysis</a></li>
+        <li><a href="/category/lecture.html">Lecture</a></li>
+        <li><a href="/category/mapping.html">mapping</a></li>
+        <li><a href="/category/misc.html">Misc</a></li>
+        <li><a href="/category/plotting.html">Plotting</a></li>
+        <li><a href="/category/teaching.html">Teaching</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/hydrography.html">hydrography</a>,    <a href="/tag/ephem.html">ephem</a>,    <a href="/tag/data-visualization.html">data visualization</a>,    <a href="/tag/data-analysis.html">data analysis</a>,    <a href="/tag/aviso.html">AVISO</a>,    <a href="/tag/visualization.html">visualization</a>,    <a href="/tag/georeference.html">georeference</a>,    <a href="/tag/python-ctd.html">python-ctd</a>,    <a href="/tag/data-visualization-ephem.html">data visualization ephem</a>,    <a href="/tag/animation.html">animation</a>,    <a href="/tag/test.html">test</a>,    <a href="/tag/lecture.html">lecture</a>,    <a href="/tag/plotting.html">plotting</a>,    <a href="/tag/plotting-xbt.html">plotting xbt</a>,    <a href="/tag/map.html">map</a>,    <a href="/tag/downloading.html">downloading</a>,    <a href="/tag/seawater.html">seawater</a>,    <a href="/tag/ssh.html">SSH</a>,    <a href="/tag/teaching.html">teaching</a>,    <a href="/tag/lecture-animations-waves.html">lecture animations waves</a>,    <a href="/tag/spikes.html">spikes</a>,    <a href="/tag/plotting-lecture.html">plotting lecture</a>,    <a href="/tag/pandas.html">pandas</a>,    <a href="/tag/ctd.html">CTD</a>,    <a href="/tag/inset.html">inset</a>,    <a href="/tag/basemap.html">basemap</a>  </section>
+
+
+
+  <section>
+    <h1>GitHub Repos</h1>
+    <ul id="gh_repos">
+      <li class="loading">Status updating...</li>
+    </ul>
+      <a href="https://github.com/ocefpaf">@ocefpaf</a> on GitHub
+    <script type="text/javascript">
+      $.domReady(function(){
+          if (!window.jXHR){
+              var jxhr = document.createElement('script');
+              jxhr.type = 'text/javascript';
+              jxhr.src = '/theme/js/jXHR.js';
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(jxhr, s);
+          }
+
+          github.showRepos({
+              user: 'ocefpaf',
+              count: 5,
+              skip_forks: true,
+              target: '#gh_repos'
+          });
+      });
+    </script>
+    <script src="/theme/js/github.js" type="text/javascript"> </script>
+  </section>
+
+    <section>
+        <h1>Blogroll</h2>
+        <ul>
+            <li><a href="http://pyaos.johnny-lin.com/" target="_blank">PyAOS</a></li>
+            <li><a href="http://drclimate.wordpress.com/" target="_blank">drclimate</a></li>
+            <li><a href="http://software-carpentry.org/blog/index.html" target="_blank">Software Carpentry</a></li>
+        </ul>
+    </section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Filipe Fernandes -
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+</body>
+</html>
