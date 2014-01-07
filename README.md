@@ -1,4 +1,4 @@
-blog
-====
+python4oceanographers
+=====================
 
-my blog
+Learn python with examples applied to oceanography.
