@@ -62,6 +62,10 @@
   <div class="entry-content"><p>(Trying my first post)</p>
 <p>
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Access-data-from-the-NECOFS-(New-England-Coastal-Ocean-Forecast-System)-via-OPeNDAP">Access data from the NECOFS (New England Coastal Ocean Forecast System) via OPeNDAP<a class="anchor-link" href="#Access-data-from-the-NECOFS-(New-England-Coastal-Ocean-Forecast-System)-via-OPeNDAP">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Demonstration using the NetCDF4-Python library to access velocity data from a triangular grid ocean model (FVCOM) via OPeNDAP, specifying the desired URL, time, layer and lat/lon region of interest. The resulting plot of forecast velocity vectors over color-shaded bathymetry is useful for a variety of recreational and scientific purposes.</p>
 <p>NECOFS (Northeastern Coastal Ocean Forecast System) is run by groups at the University of Massachusetts Dartmouth and the Woods Hole Oceanographic Institution, led by Drs. C. Chen, R. C. Beardsley, G. Cowles and B. Rothschild. Funding is provided to run the model by the NOAA-led Integrated Ocean Observing System and the State of Massachusetts.</p>
 <p>NECOFS is a coupled numerical model that uses nested weather models, a coastal ocean circulation model, and a wave model. The ocean model is a volume-mesh model with horizontal resolution that is finer in complicated regions. It is layered (not depth-averaged) and includes the effects of tides, winds, and varying water densities caused by temperature and salinity changes.</p>
@@ -7015,7 +7019,70 @@ IiIiImUcURSIiIiIiIiIiIiIlHFEUSAiIiIiIiIiIiJSxhFFgYiIiIiIiIiIiEgZ5/8BDM5ATCSw
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[15]:
+In&nbsp;[5]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[5]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+<div class="output_html rendered_html">
+
+<small>
+<p> This post was written as an IPython notebook. It is available for <a href="http://rsignell-usgs.github.io/blog/downloads/notebooks/FVCOM_depth_and_velocity.ipynb">download</a> or as a static <a href="http://
+nbviewer.ipython.org/url/rsignell-usgs.github.com/downloads/notebooks/FVCOM_depth_and_velocity.ipynb">html</a>.</p>
+<p></p>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title">Rich Signell Blog</span> by <a
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://rsignell-usgs.github.io/blog"
+property="cc:attributionName" rel="cc:attributionURL">Rich Signell</a> is
+licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a
+xmlns:dct="http://purl.org/dc/terms/"
+href="http://rsignell-usgs.github.io/blog/"
+rel="dct:source">http://rsignell-usgs.github.io/blog/</a>.
+ 
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb">
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb">
