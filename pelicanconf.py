@@ -21,7 +21,7 @@ ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 # Title menu options.
 MENUITEMS = [('Archives', '/archives.html'),
-             ('Home Page', 'http://ocefpaf.tiddlyspot.com/')]
+             ('Home Page', 'http://rsignell-usgs.github.io')]
 NEWEST_FIRST_ARCHIVES = False
 
 # Github include settings.
@@ -31,10 +31,9 @@ GITHUB_SKIP_FORK = True
 GITHUB_SHOW_USER_LINK = True
 
 # Blogroll.
-LINKS =  (('PyAOS', 'http://pyaos.johnny-lin.com/'),
-          ('drclimate', 'http://drclimate.wordpress.com/'),
-          ('Software Carpentry',
-           'http://software-carpentry.org/blog/index.html'),)
+LINKS =  (('python4oceanographers', 'http://ocefpaf.github.io'),
+          ('interesting notebooks', 'https://github.com/ipython/ipython/wiki/A-gallery-of-interesting-IPython-Notebooks'),
+          ('IOOS Github Site', 'https://github.com/ioos'),)
 
 # Social widget.
 #SOCIAL = (('You can add links in your config file', '#'),
@@ -71,8 +70,8 @@ PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
 EXTRA_HEADER = open('_nb_header_mod.html').read().decode('utf-8')
 
 # Sharing
-TWITTER_USER = 'ocefpaf'
-GOOGLE_PLUS_USER = '116220614704100857098'
+TWITTER_USER = 'rsignell'
+GOOGLE_PLUS_USER = '083194992483615084'
 GOOGLE_PLUS_ONE = True
 GOOGLE_PLUS_HIDDEN = False
 FACEBOOK_LIKE = True
