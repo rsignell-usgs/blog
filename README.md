@@ -1,4 +1,3 @@
-python4oceanographers
+Setup for an IPython Notebook blog environment
 =====================
 
-Learn python with examples applied to oceanography.
