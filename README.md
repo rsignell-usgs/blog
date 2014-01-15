@@ -1,6 +1,6 @@
 #Creating your own IPython Notebook Blog environment on Wakari
 
-* Check to make sure pandoc is available.  You can't convert the notebooks to blog entries without it. Open a terminal in Wakari, and type `which pandoc`.  It should return something, like `/opt/anaconda/bin/pandoc`.   If not found, contact Wakari support: wakari@support@continuum.io and ask them to install pandoc.
+* Check to make sure pandoc is available.  You can't convert the notebooks to blog entries without it. Open a terminal in Wakari, and type `which pandoc`.  It should return something, like `/opt/anaconda/bin/pandoc`.   If not found, contact  wakari_support@continuum.io and ask them to install pandoc.
 
 * Go to https://github.com/rsignell-usgs/blog and click the `fork` button to fork the blog repository.
 * In a Wakari terminal, make a new directory "blog" and clone your blog repository from github, for example:
@@ -10,7 +10,7 @@ cd $HOME/blog
 git clone https://github.com/dpsnowden/blog.git
 ```
 
-* You should now have a $HOME/blog/blog directory.
+* You should now have a `$HOME/blog/blog` directory.
 * Edit the `pelicanconf.py` and `publishconf.py` files and customize for your settings. 
 * Edit the `./octopress-theme/templates/_includes/{about.html, twitter.html}` files and customize for your settings.
 
