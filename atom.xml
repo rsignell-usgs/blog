@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Rich Signell's Notebook Blog</title><link href="http://rsignell-usgs.github.io/blog/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://rsignell-usgs.github.io/blog/</id><updated>2014-01-15T10:08:00-05:00</updated><entry><title>CSW Access to NGDC OPeNDAP Endpoints</title><link href="http://rsignell-usgs.github.io/blog/blog/2014/01/15/csw_ngdc_dap/" rel="alternate"></link><updated>2014-01-15T10:08:00-05:00</updated><author><name>Rich Signell</name></author><id>tag:rsignell-usgs.github.io/blog,2014-01-15:blog/2014/01/15/csw_ngdc_dap/</id><summary type="html">&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Test to see if we can SEARCH, ACCESS and USE data using IOOS supported service protocols.&lt;/p&gt;
+&lt;ol style="list-style-type: decimal"&gt;
+&lt;li&gt;&lt;p&gt;SEARCH a CSW Endpoint to find all datasets that: are containing within a specific bounding box have a specified variable of interest fall withing a specified date range contain a specific data access service type&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;ACCESS data from the discovered data endpoints&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;USE the data and see if we can use the data (to the extent of making a time series plot with a labeled x-axis).&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[1]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pylab&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;owslib.csw&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;CatalogueServiceWeb&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;owslib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;fes&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;random&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;netCDF4&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;dt&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;These are tags NGDC would like tested:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;apiso:ResponsiblePartyName
 apiso:Keywords
