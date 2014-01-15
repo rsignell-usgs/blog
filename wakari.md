@@ -41,8 +41,7 @@ pip install -r requirements.txt
 ```
 
 * New notebooks go in `$HOME\blog\blog\content\downloads\notebooks`
-* Create a new markdown file in `$HOME\blog\blog\content` that points to the new notebook.  
-These entries look like this:
+* Create a new markdown file in `$HOME\blog\blog\content` that points to the new notebook.  These entries look like this:
 
 ```
 cd $HOME\blog\blog\content
