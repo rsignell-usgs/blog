@@ -1,7 +1,4 @@
-##Setup for an IPython Notebook blog environment in Wakari
-
-#Creating your own BLOG environment on Wakari
-
+#Creating your own IPython Notebook BLOG environment on Wakari
 
 * Check to make sure pandoc is available.  You can't convert the notebooks to blog entries without it. Open a terminal in Wakari, and type `which pandoc`.  It should return something, like `/opt/anaconda/bin/pandoc`.   If not found, contact Wakari support: wakari@support@continuum.io and ask them to install pandoc.
 
