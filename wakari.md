@@ -41,5 +41,18 @@ pip install -r requirements.txt
 ```
 
 * New notebooks go in `$HOME\blog\blog\content\downloads\notebooks`
-* Create a new markdown file in `$HOME\blog\blog\content that points to the new notebook.  These entries look like this:
+* Create a new markdown file in `$HOME\blog\blog\content` that points to the new notebook.  
+These entries look like this:
+
+```
+cd $HOME\blog\blog\content
+more 2014-01-15_NGDC-CSW.md
+
+Title: CSW Access to NGDC OPeNDAP Endpoints
+date:  2014-01-15 10:08
+comments: true
+slug: csw_ngdc_dap
+
+{% notebook NGDC-CSW-DAP.ipynb cells[2:] %}
+```
 * In the directory `$HOME\blog\blog`, type `make github` to convert notebooks to html and push to gh-pages
