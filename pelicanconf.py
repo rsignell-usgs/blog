@@ -56,7 +56,7 @@ NOTEBOOK_DIR = 'downloads/notebooks'
 path = '/user_home/w_rsignell/blog/blog'
 PLUGIN_PATH = '%s/pelican-plugins' % path
 #THEME = os.path.join(os.path.abspath(os.path.dirname(__file__)),'octopress-theme')
-THEME = '%s/pelican-octopress-theme' % path
+THEME = '%s/octopress-theme' % path
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook',
            'liquid_tags.literal']
