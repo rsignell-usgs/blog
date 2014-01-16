@@ -1259,16 +1259,25 @@ init_mathjax();
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/roms_subset/">ROMS Subset Velocity</a>
+      </h1>
+      <p class="meta"><time datetime="2014-01-16T10:08:00" pubdate>Jan 16, 2014</time></p>
+</header>
+
+  <div class="entry-content"><p>{% notebook ROMS_subset_velocity.ipynb cells[2:] %}</p></div>
+  <footer>
+    <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/roms_subset/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="http://rsignell-usgs.github.io/blog/blog/2014/01/15/csw_ngdc_dap/">CSW Access to NGDC OPeNDAP Endpoints</a>
       </h1>
       <p class="meta"><time datetime="2014-01-15T10:08:00" pubdate>Jan 15, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Test to see if we can SEARCH, ACCESS and USE data using IOOS supported service protocols.</p>
-<ol style="list-style-type: decimal">
-<li><p>SEARCH a CSW Endpoint to find all datasets that: are containing within a specific bounding box have a specified variable of interest fall withing a specified date range contain a specific data access service ...</p></li></ol></div></p></div>
+  <div class="entry-content"><p>{% notebook NGDC-CSW-DAP.ipynb cells[2:] %}</p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/01/15/csw_ngdc_dap/">Read On &crarr;</a>
   </footer>
@@ -1282,9 +1291,7 @@ init_mathjax();
 </header>
 
   <div class="entry-content"><p>(Trying my first post)</p>
-<p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Demonstration using the NetCDF4-Python library to access velocity data from a triangular grid ocean model (FVCOM) via OPeNDAP, specifying the desired URL, time, layer and lat/lon region of interest. The resulting plot of forecast velocity vectors over color-shaded bathymetry is useful for a variety of ...</p></div></p></div>
+<p>{% notebook FVCOM_depth_and_velocity.ipynb cells[2:] %}</p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/01/08/fvcom/">Read On &crarr;</a>
   </footer>
@@ -1304,6 +1311,9 @@ init_mathjax();
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/roms_subset/">ROMS Subset Velocity</a>
+      </li>
       <li class="post">
           <a href="http://rsignell-usgs.github.io/blog/blog/2014/01/15/csw_ngdc_dap/">CSW Access to NGDC OPeNDAP Endpoints</a>
       </li>

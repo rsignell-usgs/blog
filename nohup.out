@@ -1,0 +1,72 @@
+Traceback (most recent call last):
+  File "/home/sgeadmin/anaconda/envs/blog/bin/ipython", line 9, in <module>
+    load_entry_point('ipython==1.1.0', 'console_scripts', 'ipython')()
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/__init__.py", line 118, in start_ipython
+    return launch_new_instance(argv=argv, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 544, in launch_instance
+    app.initialize(argv)
+  File "<string>", line 2, in initialize
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/terminal/ipapp.py", line 312, in initialize
+    super(TerminalIPythonApp, self).initialize(argv)
+  File "<string>", line 2, in initialize
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/core/application.py", line 362, in initialize
+    self.parse_command_line(argv)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/terminal/ipapp.py", line 307, in parse_command_line
+    return super(TerminalIPythonApp, self).parse_command_line(argv)
+  File "<string>", line 2, in parse_command_line
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 474, in parse_command_line
+    return self.initialize_subcommand(subc, subargv)
+  File "<string>", line 2, in initialize_subcommand
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 405, in initialize_subcommand
+    subapp = import_item(subapp)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/utils/importstring.py", line 42, in import_item
+    module = __import__(package, fromlist=[obj])
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/html/notebookapp.py", line 36, in <module>
+    check_for_zmq('2.1.11', 'IPython.html')
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/utils/zmqrelated.py", line 37, in check_for_zmq
+    raise ImportError("%s requires pyzmq >= %s"%(required_by, minimum_version))
+ImportError: IPython.html requires pyzmq >= 2.1.11
+Traceback (most recent call last):
+  File "/home/sgeadmin/anaconda/envs/blog/bin/ipython", line 9, in <module>
+    load_entry_point('ipython==1.1.0', 'console_scripts', 'ipython')()
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/__init__.py", line 118, in start_ipython
+    return launch_new_instance(argv=argv, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 544, in launch_instance
+    app.initialize(argv)
+  File "<string>", line 2, in initialize
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/terminal/ipapp.py", line 312, in initialize
+    super(TerminalIPythonApp, self).initialize(argv)
+  File "<string>", line 2, in initialize
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/core/application.py", line 362, in initialize
+    self.parse_command_line(argv)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/terminal/ipapp.py", line 307, in parse_command_line
+    return super(TerminalIPythonApp, self).parse_command_line(argv)
+  File "<string>", line 2, in parse_command_line
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 474, in parse_command_line
+    return self.initialize_subcommand(subc, subargv)
+  File "<string>", line 2, in initialize_subcommand
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 89, in catch_config_error
+    return method(app, *args, **kwargs)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/config/application.py", line 405, in initialize_subcommand
+    subapp = import_item(subapp)
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/utils/importstring.py", line 42, in import_item
+    module = __import__(package, fromlist=[obj])
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/html/notebookapp.py", line 36, in <module>
+    check_for_zmq('2.1.11', 'IPython.html')
+  File "/home/sgeadmin/anaconda/envs/blog/lib/python2.7/site-packages/IPython/utils/zmqrelated.py", line 37, in check_for_zmq
+    raise ImportError("%s requires pyzmq >= %s"%(required_by, minimum_version))
+ImportError: IPython.html requires pyzmq >= 2.1.11

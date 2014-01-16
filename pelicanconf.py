@@ -53,7 +53,7 @@ NOTEBOOK_DIR = 'downloads/notebooks'
 # http://github.com/getpelican/pelican-plugins/ (original)
 # https://github.com/jakevdp/pelican-plugins.git (liquid_tags branch)
 #path = '/home/filipe/Dropbox/Blog/blog-virtual-env'
-path = '/user_home/w_rsignell/blog/blog'
+path = '/home/sgeadmin/blog/blog'
 PLUGIN_PATH = '%s/pelican-plugins' % path
 #THEME = os.path.join(os.path.abspath(os.path.dirname(__file__)),'octopress-theme')
 THEME = '%s/octopress-theme' % path
