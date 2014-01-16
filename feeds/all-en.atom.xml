@@ -1,5 +1,1217 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Rich Signell's Notebook Blog</title><link href="http://rsignell-usgs.github.io/blog/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>http://rsignell-usgs.github.io/blog/</id><updated>2014-01-16T10:08:00-05:00</updated><entry><title>ROMS Subset Velocity</title><link href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/roms_subset/" rel="alternate"></link><updated>2014-01-16T10:08:00-05:00</updated><author><name>Rich Signell</name></author><id>tag:rsignell-usgs.github.io/blog,2014-01-16:blog/2014/01/16/roms_subset/</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Rich Signell's Notebook Blog</title><link href="http://rsignell-usgs.github.io/blog/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>http://rsignell-usgs.github.io/blog/</id><updated>2014-01-16T18:06:00-05:00</updated><entry><title>CKAN test</title><link href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/ckan/" rel="alternate"></link><updated>2014-01-16T18:06:00-05:00</updated><author><name>Rich Signell</name></author><id>tag:rsignell-usgs.github.io/blog,2014-01-16:blog/2014/01/16/ckan/</id><summary type="html">&lt;p&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;We want to find all Data.gov datasets that match a specific type of data (e.g. &lt;code&gt;sea_water_temperature&lt;/code&gt;), in a specified geospatial extent and time window, and that have a specific type of data endpoint (e.g. OPeNDAP). Since data.gov uses CKAN, while waiting for a CSW interface, here we try using the CKAN API with the &lt;code&gt;requests&lt;/code&gt; package and with the &lt;code&gt;ckanclient&lt;/code&gt; package.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[2]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Let's try doing a request first with the &lt;code&gt;requests&lt;/code&gt; package&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[3]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;http://catalog.data.gov/api/3/search/dataset?q=&lt;/span&gt;&lt;span class="si"&gt;%22s&lt;/span&gt;&lt;span class="s"&gt;ea_water_temperature%22&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+[u&amp;apos;count&amp;apos;, u&amp;apos;results&amp;apos;]
+52
+[u&amp;apos;physical-and-meteorological-data-from-the-tropical-atmosphere-ocean-tao-array-in-the-tropical-p2faf2&amp;apos;,
+ u&amp;apos;physical-and-meteorological-data-from-the-tropical-atmosphere-ocean-tao-array-in-the-tropical-p43e69&amp;apos;,
+ u&amp;apos;physical-and-meteorological-data-from-the-tropical-atmosphere-ocean-tao-array-in-the-tropical-p44495&amp;apos;,
+ u&amp;apos;physical-and-meteorological-data-from-the-tropical-atmosphere-ocean-tao-array-in-the-tropical-p5d444&amp;apos;,
+ u&amp;apos;physical-and-meteorological-data-from-the-tropical-atmosphere-ocean-tao-array-in-the-tropical-p652ed&amp;apos;]
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Now let's try the ckanclient&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[4]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;ckanclient&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[5]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;ckan&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ckanclient&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;CkanClient&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://catalog.data.gov/api/3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Try the same simple search we did with &lt;code&gt;requests&lt;/code&gt; above&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[6]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;search_params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tags:&amp;quot;sea_water_temperature&amp;quot; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;                                                                                            
+&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ckan&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;package_search&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;search_params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+51
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Hmm... Interesting. With &lt;code&gt;ckanclient&lt;/code&gt; we got 51 results back, where with &lt;code&gt;requests&lt;/code&gt;, we got 52. Could be a 0- vs 1 based index thing? &lt;br&gt; Now let's try a more complex search, asking for only 3 results back. Below we ask for &lt;code&gt;res_format:PDF&lt;/code&gt;, but what are the other possible &lt;code&gt;res_format&lt;/code&gt; values we can query on?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[7]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;search_params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                                                      
+    &lt;span class="s"&gt;&amp;#39;q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tags:&amp;quot;sea_water_temperature&amp;quot; AND metadata_modified:[2012-06-01T00:00:00.000Z TO NOW]&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;       
+    &lt;span class="s"&gt;&amp;#39;fq&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;res_format:PDF&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                                                                            
+    &lt;span class="s"&gt;&amp;#39;extras&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ext_bbox&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-121,45,-120,46&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;                                                          
+    &lt;span class="s"&gt;&amp;#39;rows&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;                                                                                       
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ckan&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;package_search&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;search_params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+7
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[8]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;search_params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                                                      
+    &lt;span class="s"&gt;&amp;#39;q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tags:&amp;quot;temperature&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                                                                                    &lt;span class="s"&gt;&amp;#39;fq&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;res_format:PDF&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                                                                            
+    &lt;span class="s"&gt;&amp;#39;extras&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ext_bbox&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;-125,38,-124,39&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;   
+    &lt;span class="s"&gt;&amp;#39;rows&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;                                                                                       
+&lt;span class="p"&gt;}&lt;/span&gt;
+      
+&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ckan&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;package_search&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;search_params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+10
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So what does one of these results look like? Let's take a look at the keys&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[9]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+[u&amp;apos;license_title&amp;apos;, u&amp;apos;maintainer&amp;apos;, u&amp;apos;relationships_as_object&amp;apos;, u&amp;apos;private&amp;apos;, u&amp;apos;maintainer_email&amp;apos;, u&amp;apos;num_tags&amp;apos;, u&amp;apos;id&amp;apos;, u&amp;apos;metadata_created&amp;apos;, u&amp;apos;metadata_modified&amp;apos;, u&amp;apos;author&amp;apos;, u&amp;apos;author_email&amp;apos;, u&amp;apos;state&amp;apos;, u&amp;apos;version&amp;apos;, u&amp;apos;license_id&amp;apos;, u&amp;apos;type&amp;apos;, u&amp;apos;resources&amp;apos;, u&amp;apos;num_resources&amp;apos;, u&amp;apos;tags&amp;apos;, u&amp;apos;tracking_summary&amp;apos;, u&amp;apos;groups&amp;apos;, u&amp;apos;organization&amp;apos;, u&amp;apos;relationships_as_subject&amp;apos;, u&amp;apos;revision_timestamp&amp;apos;, u&amp;apos;name&amp;apos;, u&amp;apos;isopen&amp;apos;, u&amp;apos;url&amp;apos;, u&amp;apos;notes&amp;apos;, u&amp;apos;owner_org&amp;apos;, u&amp;apos;extras&amp;apos;, u&amp;apos;title&amp;apos;, u&amp;apos;revision_id&amp;apos;]
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[10]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+[{u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479373&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;ae4f1268-5e50-4ac8-aee8-81d75504f92d&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;Web Page&amp;apos;,
+  u&amp;apos;position&amp;apos;: 0,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0074922&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None},
+ {u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479392&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;567f688c-6648-4328-b9ca-e46bd1dd56cc&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;Web Page&amp;apos;,
+  u&amp;apos;position&amp;apos;: 1,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None},
+ {u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479397&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;65d1f965-27d6-429c-b1b2-b374d07d78e6&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;Web Page&amp;apos;,
+  u&amp;apos;position&amp;apos;: 2,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/2011/07&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None},
+ {u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479401&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;10c5d503-89cc-4b2d-89da-0fe758e37d18&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;Web Page&amp;apos;,
+  u&amp;apos;position&amp;apos;: 3,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None},
+ {u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479405&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;53c1b069-fd71-457c-8292-fe97d2679a0e&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;Web Page&amp;apos;,
+  u&amp;apos;position&amp;apos;: 4,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;http://accession.nodc.noaa.gov/0074922&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None},
+ {u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479408&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;f8e30cb9-372a-46e8-9c8a-dd931c29f593&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;Web Page&amp;apos;,
+  u&amp;apos;position&amp;apos;: 5,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;http://accession.nodc.noaa.gov/0070493&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None},
+ {u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479412&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;9ebc0d66-110e-4c32-9e12-84918dbe7eb0&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;Web Page&amp;apos;,
+  u&amp;apos;position&amp;apos;: 6,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None},
+ {u&amp;apos;cache_last_updated&amp;apos;: None,
+  u&amp;apos;cache_url&amp;apos;: None,
+  u&amp;apos;created&amp;apos;: u&amp;apos;2013-05-20T01:41:12.479416&amp;apos;,
+  u&amp;apos;description&amp;apos;: u&amp;apos;eval_NDBC_moored_winds.pdf&amp;apos;,
+  u&amp;apos;format&amp;apos;: u&amp;apos;PDF&amp;apos;,
+  u&amp;apos;hash&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;id&amp;apos;: u&amp;apos;3746c191-6072-4e36-9f8f-e71798b797e1&amp;apos;,
+  u&amp;apos;last_modified&amp;apos;: None,
+  u&amp;apos;mimetype&amp;apos;: None,
+  u&amp;apos;mimetype_inner&amp;apos;: None,
+  u&amp;apos;name&amp;apos;: u&amp;apos;PDF File&amp;apos;,
+  u&amp;apos;position&amp;apos;: 7,
+  u&amp;apos;resource_group_id&amp;apos;: u&amp;apos;bcd1a009-703b-4563-bf0d-033a605d4661&amp;apos;,
+  u&amp;apos;resource_locator_function&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_locator_protocol&amp;apos;: u&amp;apos;&amp;apos;,
+  u&amp;apos;resource_type&amp;apos;: None,
+  u&amp;apos;revision_id&amp;apos;: u&amp;apos;45ed7bd3-2bc4-46e1-bd52-88783cbdd676&amp;apos;,
+  u&amp;apos;revision_timestamp&amp;apos;: u&amp;apos;2013-05-19T23:41:12.457220&amp;apos;,
+  u&amp;apos;size&amp;apos;: None,
+  u&amp;apos;state&amp;apos;: u&amp;apos;active&amp;apos;,
+  u&amp;apos;tracking_summary&amp;apos;: {u&amp;apos;recent&amp;apos;: 0, u&amp;apos;total&amp;apos;: 0},
+  u&amp;apos;url&amp;apos;: u&amp;apos;http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf&amp;apos;,
+  u&amp;apos;webstore_last_updated&amp;apos;: None,
+  u&amp;apos;webstore_url&amp;apos;: None}]
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[11]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0074922
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Now let's see what the urls looks like for all the resources&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[12]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;url:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;protocol:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resource_locator_protocol&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;resource_type:&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resource_type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+url: http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0074922
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/2011/07
+protocol: 
+resource_type: None
+url: ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0074922
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070493
+protocol: 
+resource_type: None
+url: http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2
+protocol: 
+resource_type: None
+url: http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf
+protocol: 
+resource_type: None
+url: http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0070959
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/2011/01
+protocol: 
+resource_type: None
+url: ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070959
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070493
+protocol: 
+resource_type: None
+url: http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2
+protocol: 
+resource_type: None
+url: http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf
+protocol: 
+resource_type: None
+url: http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0071368
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/2011/02
+protocol: 
+resource_type: None
+url: ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0071368
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070493
+protocol: 
+resource_type: None
+url: http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2
+protocol: 
+resource_type: None
+url: http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf
+protocol: 
+resource_type: None
+url: http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0073426
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/2011/05
+protocol: 
+resource_type: None
+url: ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0073426
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070493
+protocol: 
+resource_type: None
+url: http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2
+protocol: 
+resource_type: None
+url: http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf
+protocol: 
+resource_type: None
+url: http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0072077
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0072077
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070493
+protocol: 
+resource_type: None
+url: http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2
+protocol: 
+resource_type: None
+url: http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf
+protocol: 
+resource_type: None
+url: http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0074384
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/2011/06
+protocol: 
+resource_type: None
+url: ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0074384
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070493
+protocol: 
+resource_type: None
+url: http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2
+protocol: 
+resource_type: None
+url: http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf
+protocol: 
+resource_type: None
+url: http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0072886
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://data.nodc.noaa.gov/opendap/ndbc/cmanwx/2011/04
+protocol: 
+resource_type: None
+url: ftp://ftp.nodc.noaa.gov/pub/data.nodc/ndbc/cmanwx/
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0072886
+protocol: 
+resource_type: None
+url: http://accession.nodc.noaa.gov/0070493
+protocol: 
+resource_type: None
+url: http://journals.ametsoc.org/doi/abs/10.1175/1520-0426%281993%29010%3C0097%3ADWFEOT%3E2.0.CO%3B2
+protocol: 
+resource_type: None
+url: http://www.worldwindsinc.com/TechPapers/dgil/eval_NDBC_moored_winds.pdf
+protocol: 
+resource_type: None
+url: http://repository.stategeothermaldata.org/metadata/record/98ddf901b9782a25982e01af3b0b6710/file/ca_sanyal_geopres_resources_in_ca.pdf
+protocol: 
+resource_type: None
+url: ftp://ftp.consrv.ca.gov/pub/oil/publications/tr15.pdf
+protocol: 
+resource_type: None
+url: http://repository.stategeothermaldata.org/metadata/record/98ddf901b9782a25982e01af3b0b33f8/file/the_nature_and_occurrence_of_geopressured_resource_areas_in_the_state_of_california_-_by_subir_sanyal_etal.pdf
+protocol: 
+resource_type: None
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So there are multiple resources for each record. Let's check out a some specific resource urls for all datasets&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[13]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0074922
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0070959
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0071368
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0073426
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0072077
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0074384
+http://www.nodc.noaa.gov/cgi-bin/OAS/prd/accession/download/0072886
+http://repository.stategeothermaldata.org/metadata/record/98ddf901b9782a25982e01af3b0b6710/file/ca_sanyal_geopres_resources_in_ca.pdf
+ftp://ftp.consrv.ca.gov/pub/oil/publications/tr15.pdf
+http://repository.stategeothermaldata.org/metadata/record/98ddf901b9782a25982e01af3b0b33f8/file/the_nature_and_occurrence_of_geopressured_resource_areas_in_the_state_of_california_-_by_subir_sanyal_etal.pdf
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[14]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyerr"&gt;
+&lt;pre&gt;
+&lt;span class="ansired"&gt;---------------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="ansired"&gt;IndexError&lt;/span&gt;                                Traceback (most recent call last)
+&lt;span class="ansigreen"&gt;&amp;lt;ipython-input-14-40679c96a025&amp;gt;&lt;/span&gt; in &lt;span class="ansicyan"&gt;&amp;lt;module&amp;gt;&lt;/span&gt;&lt;span class="ansiblue"&gt;()&lt;/span&gt;
+&lt;span class="ansigreen"&gt;      1&lt;/span&gt; resource_number&lt;span class="ansiyellow"&gt;=&lt;/span&gt;&lt;span class="ansicyan"&gt;1&lt;/span&gt;&lt;span class="ansiyellow"&gt;&lt;/span&gt;
+&lt;span class="ansigreen"&gt;      2&lt;/span&gt; &lt;span class="ansigreen"&gt;for&lt;/span&gt; item &lt;span class="ansigreen"&gt;in&lt;/span&gt; d&lt;span class="ansiyellow"&gt;[&lt;/span&gt;&lt;span class="ansiblue"&gt;&amp;apos;results&amp;apos;&lt;/span&gt;&lt;span class="ansiyellow"&gt;]&lt;/span&gt;&lt;span class="ansiyellow"&gt;:&lt;/span&gt;&lt;span class="ansiyellow"&gt;&lt;/span&gt;
+&lt;span class="ansigreen"&gt;----&amp;gt; 3&lt;/span&gt;&lt;span class="ansiyellow"&gt;     &lt;/span&gt;&lt;span class="ansigreen"&gt;print&lt;/span&gt; item&lt;span class="ansiyellow"&gt;[&lt;/span&gt;&lt;span class="ansiblue"&gt;&amp;apos;resources&amp;apos;&lt;/span&gt;&lt;span class="ansiyellow"&gt;]&lt;/span&gt;&lt;span class="ansiyellow"&gt;[&lt;/span&gt;resource_number&lt;span class="ansiyellow"&gt;]&lt;/span&gt;&lt;span class="ansiyellow"&gt;[&lt;/span&gt;&lt;span class="ansiblue"&gt;&amp;apos;url&amp;apos;&lt;/span&gt;&lt;span class="ansiyellow"&gt;]&lt;/span&gt;&lt;span class="ansiyellow"&gt;&lt;/span&gt;
+
+&lt;span class="ansired"&gt;IndexError&lt;/span&gt;: list index out of range&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+http://data.nodc.noaa.gov/thredds/catalog/ndbc/cmanwx/
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Hmm... These are not data granules, but data collections. We need the actually OPeNDAP dataset URLs. How do we get from this catalog information to the actual dataset service endpoints? Let's try looking for NetCDF&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[15]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;search_params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                                               
+    &lt;span class="s"&gt;&amp;#39;q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tags:&amp;quot;sea_water_temperature&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;fq&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;res_format:NetCDF&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;rows&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;                                                                                                                            
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ckan&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;package_search&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;search_params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+0
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Hmmm.. We got skunked. Maybe try just &lt;code&gt;temperature&lt;/code&gt; instead of &lt;code&gt;sea_water_temperature&lt;/code&gt;?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[16]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;search_params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                                               
+    &lt;span class="s"&gt;&amp;#39;q&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;tags:&amp;quot;temperature&amp;quot;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;fq&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;res_format:NetCDF&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;rows&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;                                                                                                                            
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ckan&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;action&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;package_search&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;search_params&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; 
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+2574
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Well, that's better!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[17]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc.html
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/WES001/2010/catalog.html?dataset=nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/WES001/2010/catalog.html?dataset=nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc.html
+http://data.nodc.noaa.gov/thredds/dodsC/nmsp/wcos/WES001/2010/catalog.html?dataset=nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc.html
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2005/catalog.html?dataset=nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2005/catalog.html?dataset=nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc.html
+http://data.nodc.noaa.gov/thredds/dodsC/nmsp/wcos/SMS/2005/catalog.html?dataset=nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc.html
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/TH042/2005/catalog.html?dataset=nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/TH042/2005/catalog.html?dataset=nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc.html
+http://data.nodc.noaa.gov/thredds/dodsC/nmsp/wcos/TH042/2005/catalog.html?dataset=nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc.html
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/CE042/2006/catalog.html?dataset=nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/CE042/2006/catalog.html?dataset=nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc.html
+http://data.nodc.noaa.gov/thredds/dodsC/nmsp/wcos/CE042/2006/catalog.html?dataset=nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc.html
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2008/catalog.html?dataset=nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2008/catalog.html?dataset=nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc.html
+http://data.nodc.noaa.gov/thredds/dodsC/nmsp/wcos/SMS/2008/catalog.html?dataset=nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[18]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc.html
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc.html
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc.html
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc.html
+http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc.html
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[19]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/WES001/2010/catalog.html?dataset=nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2005/catalog.html?dataset=nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/TH042/2005/catalog.html?dataset=nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/CE042/2006/catalog.html?dataset=nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2008/catalog.html?dataset=nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[20]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/WES001/2010/catalog.html?dataset=nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2005/catalog.html?dataset=nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/TH042/2005/catalog.html?dataset=nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/CE042/2006/catalog.html?dataset=nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc
+http://data.nodc.noaa.gov/thredds/catalog/nmsp/wcos/SMS/2008/catalog.html?dataset=nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Let's get a list of the OPeNDAP Data URLs&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[21]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+&lt;span class="n"&gt;dap_url&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;dap_url&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;resources&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;resource_number&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;url&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dap_url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;
+[u&amp;apos;http://data.nodc.noaa.gov/opendap/nmsp/wcos/WES001/2010/WES001_030MTBD011R00_20100416.nc&amp;apos;,
+ u&amp;apos;http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2005/SMSXXX_015MTBD014R00_20051113.nc&amp;apos;,
+ u&amp;apos;http://data.nodc.noaa.gov/opendap/nmsp/wcos/TH042/2005/TH042X_042MTBD000R00_20050628.nc&amp;apos;,
+ u&amp;apos;http://data.nodc.noaa.gov/opendap/nmsp/wcos/CE042/2006/CE042X_042MTBD007R00_20060504.nc&amp;apos;,
+ u&amp;apos;http://data.nodc.noaa.gov/opendap/nmsp/wcos/SMS/2008/SMSXXX_015MTBD003R00_20080227.nc&amp;apos;]
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[21]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Now let's try to read one of the OPeNDAP Data URLs&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[22]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;netCDF4&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;nc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;netCDF4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dap_url&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Conventions&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;ncvar&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;ncvar&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;yearday&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;ncvar&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Temperature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Uh, this says it's CF 1.4, but no way is it CF 1.4. There are not even units on time! &lt;br&gt; The long_name of time is just &lt;code&gt;Day of the Year&lt;/code&gt;, but there doesn't even seem to be information in the file to say what year:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ncattrs&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;=&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;getattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So if we are going to plot this, it's going to be with a human trying to figure out what is what:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10000&lt;/span&gt;
+&lt;span class="n"&gt;yd&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ncvar&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;yearday&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flatten&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ncvar&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Temperature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flatten&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;yd&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Still don't know what year this is. Guess 2012 since that's when the conversion script was run by NCDDC?&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[]:
+&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>ROMS Subset Velocity</title><link href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/roms_subset/" rel="alternate"></link><updated>2014-01-16T10:08:00-05:00</updated><author><name>Rich Signell</name></author><id>tag:rsignell-usgs.github.io/blog,2014-01-16:blog/2014/01/16/roms_subset/</id><summary type="html">&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;
@@ -5410,7 +6622,17 @@ In&amp;nbsp;[1]:
 
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;These are tags NGDC would like tested: &lt;code&gt;apiso:ResponsiblePartyName apiso:Keywords apiso:KeywordType apiso:VertExtent_min apiso:VertExtent_max apiso:ServiceType apiso:ServiceTypeVersion apiso:OperatesOn resource.url website.url&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;These are tags NGDC would like tested:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;apiso:ResponsiblePartyName
+apiso:Keywords
+apiso:KeywordType
+apiso:VertExtent_min
+apiso:VertExtent_max
+apiso:ServiceType
+apiso:ServiceTypeVersion
+apiso:OperatesOn
+resource.url
+website.url&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
