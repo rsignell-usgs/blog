@@ -1764,7 +1764,10 @@ init_mathjax();
       <p class="meta"><time datetime="2014-02-04T10:08:00" pubdate>Feb 04, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>{% notebook NECOFS_water_levels.ipynb cells[2:] %}</p></div>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Demonstration using the NetCDF4-Python library to extract time-series of sea surface height from a triangular grid ocean model (FVCOM) via OPeNDAP, specifying the desired URL, time range, and lat/lon locations of interest.</p>
+<p>NECOFS (Northeastern Coastal Ocean Forecast System) is run by groups at the University of Massachusetts Dartmouth and ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/02/04/NECOFS_water_levels/">Read On &crarr;</a>
   </footer>
@@ -1780,7 +1783,10 @@ init_mathjax();
   <div class="entry-content"><p>date:  2014-03-04 10:08
 comments: true
 slug: ncSOS_and_OWSlib_and_pyoos</p>
-<p>{% notebook ncSOS_and_OWSlib_and_pyoos.ipynb cells[2:] %}</p></div>
+<p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have an ncSOS server with a <a href="http://geoport-dev.whoi.edu/thredds/sos/usgs/data2/notebook/1211-A1H.cdf?service=SOS&amp;version=1.0.0&amp;request=GetObservation&amp;responseFormat=text%2Fxml%3Bsubtype%3D%22om%2F1.0.0%22&amp;offering=1211-A1H&amp;observedProperty=u_1205&amp;procedure=urn:ioos:station:gov.usgs:1211-A1H">get observation example that works</a>:</p>
+<pre><code>http://geoport-dev.whoi.edu/thredds/sos/usgs/data2/notebook/1211-A1H.cdf?service=SOS&amp;version=1.0.0&amp;request=GetObservation&amp;responseFormat=text%2Fxml%3Bsubtype%3D%22om%2F1.0.0%22&amp;offering ...</code></pre></div></p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/02/03/accessing-ncsos-with-owslib-and-pyoo/">Read On &crarr;</a>
   </footer>
@@ -1793,7 +1799,9 @@ slug: ncSOS_and_OWSlib_and_pyoos</p>
       <p class="meta"><time datetime="2014-01-16T18:06:00" pubdate>Jan 16, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>{% notebook CKAN.ipynb cells[2:] %}</p></div>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We want to find all Data.gov datasets that match a specific type of data (e.g. <code>sea_water_temperature</code>), in a specified geospatial extent and time window, and that have a specific type of data endpoint (e.g. OPeNDAP). Since data.gov uses CKAN, while waiting for a CSW interface, here ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/ckan/">Read On &crarr;</a>
   </footer>
@@ -1806,7 +1814,20 @@ slug: ncSOS_and_OWSlib_and_pyoos</p>
       <p class="meta"><time datetime="2014-01-16T10:08:00" pubdate>Jan 16, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>{% notebook ROMS_subset_velocity.ipynb cells[2:] %}</p></div>
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">bbox2ij</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">lat</span><span class="p">,</span><span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">160.</span><span class="p">,</span> <span class="o">-</span><span class="mf">155.</span><span class="p">,</span> <span class="mf">18.</span><span class="p">,</span> <span class="mf">23.</span><span class="p">]):</span>
+    <span class="sd">&quot;&quot;&quot;Return indices for i,j that will completely cover the specified bounding box.</span>
+<span class="sd">   </span>
+<span class="sd">    i0,i1,j0,j1 = bbox2ij(lon,lat,bbox)</span>
+<span class="sd">    </span>
+<span class="sd">    lon,lat = 2D arrays that are the target of the subset</span>
+<span class="sd">    bbox = list containing the bounding box: [lon_min ...</span></pre></div></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/01/16/roms_subset/">Read On &crarr;</a>
   </footer>
@@ -1819,7 +1840,11 @@ slug: ncSOS_and_OWSlib_and_pyoos</p>
       <p class="meta"><time datetime="2014-01-15T10:08:00" pubdate>Jan 15, 2014</time></p>
 </header>
 
-  <div class="entry-content"><p>{% notebook NGDC-CSW-DAP.ipynb cells[2:] %}</p></div>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Test to see if we can SEARCH, ACCESS and USE data using IOOS supported service protocols.</p>
+<ol style="list-style-type: decimal">
+<li><p>SEARCH a CSW Endpoint to find all datasets that: are containing within a specific bounding box have a specified variable of interest fall withing a specified date range contain a specific data access service ...</p></li></ol></div></p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/01/15/csw_ngdc_dap/">Read On &crarr;</a>
   </footer>
@@ -1833,7 +1858,9 @@ slug: ncSOS_and_OWSlib_and_pyoos</p>
 </header>
 
   <div class="entry-content"><p>(Trying my first post)</p>
-<p>{% notebook FVCOM_depth_and_velocity.ipynb cells[2:] %}</p></div>
+<p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Demonstration using the NetCDF4-Python library to access velocity data from a triangular grid ocean model (FVCOM) via OPeNDAP, specifying the desired URL, time, layer and lat/lon region of interest. The resulting plot of forecast velocity vectors over color-shaded bathymetry is useful for a variety of ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://rsignell-usgs.github.io/blog/blog/2014/01/08/fvcom/">Read On &crarr;</a>
   </footer>
