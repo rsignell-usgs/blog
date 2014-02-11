@@ -14,9 +14,14 @@ git clone git@github.com:dpsnowden/blog.git
 * Edit the `pelicanconf.py` and `publishconf.py` files and customize for your settings. 
 * Edit the `./octopress-theme/templates/_includes/{about.html, twitter.html}` files and customize for your settings.
 
-* Create a SSH keypair to use for pushing from Wakari to Github pages:
-* Add the SSH public key `$HOME/.ssh/id_rsa.pub` in your Github user settings
-* Add lines to `$HOME\.bashrc` to start SSH agent
+* [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys)
+```
+* Add these lines to your `$HOME\.bashrc` to start SSH agent when you login to Wakari:
+```
+ssh-agent | tee ~/.ssh/agent.sh
+source ~/.ssh/agent.sh
+ssh-add ~/.ssh/id_rsa
+```
 
 * Create a custom Wakari `blog` environment with the necessary conda packages:
 ```
