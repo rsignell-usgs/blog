@@ -3,7 +3,6 @@
 * Check to make sure pandoc is available.  You can't convert the notebooks to blog entries without it. Open a terminal in Wakari, and type `which pandoc`.  It should return something, like `/opt/anaconda/bin/pandoc`.   If not found, contact  wakari_support@continuum.io and ask them to install pandoc.
 
 * Go to https://github.com/rsignell-usgs/blog and click the `fork` button to fork the blog repository.
-* 
 * [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys) except you won't be able to do the testing in step 4 until you add the lines below to your .bashrc and start the ssh agent.
 
 
