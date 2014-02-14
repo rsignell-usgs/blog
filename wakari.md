@@ -4,15 +4,16 @@
 
 * Go to https://github.com/rsignell-usgs/blog and click the `fork` button to fork the blog repository.
 * 
-* [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys)
-```
+* [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys) except you won't be able to do the testing in step 4 until you add the lines below to your .bashrc and start the ssh agent.
+
+
 * Add these lines to your `$HOME\.bashrc` to start SSH agent when you login to Wakari:
 ```
 ssh-agent | tee ~/.ssh/agent.sh
 source ~/.ssh/agent.sh
 ssh-add ~/.ssh/id_rsa
 ```
-
+* execute this by doing `. ~/.bashrc`
 * In a Wakari terminal, make a new directory "blog" and clone your blog repository from your fork using SSH, for example:
 ```
 mkdir $HOME/blog
