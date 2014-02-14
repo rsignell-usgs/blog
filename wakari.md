@@ -3,7 +3,17 @@
 * Check to make sure pandoc is available.  You can't convert the notebooks to blog entries without it. Open a terminal in Wakari, and type `which pandoc`.  It should return something, like `/opt/anaconda/bin/pandoc`.   If not found, contact  wakari_support@continuum.io and ask them to install pandoc.
 
 * Go to https://github.com/rsignell-usgs/blog and click the `fork` button to fork the blog repository.
-* In a Wakari terminal, make a new directory "blog" and clone your blog repository from github using SSH, for example:
+* 
+* [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys)
+```
+* Add these lines to your `$HOME\.bashrc` to start SSH agent when you login to Wakari:
+```
+ssh-agent | tee ~/.ssh/agent.sh
+source ~/.ssh/agent.sh
+ssh-add ~/.ssh/id_rsa
+```
+
+* In a Wakari terminal, make a new directory "blog" and clone your blog repository from your fork using SSH, for example:
 ```
 mkdir $HOME/blog
 cd $HOME/blog
@@ -13,15 +23,6 @@ git clone git@github.com:dpsnowden/blog.git
 * You should now have a `$HOME/blog/blog` directory.
 * Edit the `pelicanconf.py` and `publishconf.py` files and customize for your settings. 
 * Edit the `./octopress-theme/templates/_includes/{about.html, twitter.html}` files and customize for your settings.
-
-* [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys)
-```
-* Add these lines to your `$HOME\.bashrc` to start SSH agent when you login to Wakari:
-```
-ssh-agent | tee ~/.ssh/agent.sh
-source ~/.ssh/agent.sh
-ssh-add ~/.ssh/id_rsa
-```
 
 * Create a custom Wakari `blog` environment with the necessary conda packages:
 ```
