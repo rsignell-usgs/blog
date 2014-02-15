@@ -3,16 +3,16 @@
 * Check to make sure pandoc is available.  You can't convert the notebooks to blog entries without it. Open a terminal in Wakari, and type `which pandoc`.  It should return something, like `/opt/anaconda/bin/pandoc`.   If not found, contact  wakari_support@continuum.io and ask them to install pandoc.
 
 * Go to https://github.com/rsignell-usgs/blog and click the `fork` button to fork the blog repository.
-* [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys) except you won't be able to do the testing in step 4 until you add the lines below to your .bashrc and start the ssh agent.
+* [Create a SSH keypair to use for pushing from Wakari to Github pages](https://help.github.com/articles/generating-ssh-keys) except you won't be able to do the testing in step 4 until you add the lines below to your .bashrc and start the ssh agent.  I didn't use a passphrase on SSH (I just hit enter when it asks for a passphrase).
 
 
-* Add these lines to your `$HOME\.bashrc` to start SSH agent when you login to Wakari:
+* In Wakari, go to "terminals", then select "shell" and add these lines to your `$HOME\.bashrc` to start SSH agent when you login to Wakari:
 ```
 ssh-agent | tee ~/.ssh/agent.sh
 source ~/.ssh/agent.sh
 ssh-add ~/.ssh/id_rsa
 ```
-* execute this by doing `. ~/.bashrc`
+* Either create a new terminal, or execute this by typing `source ~/.bashrc`
 * In a Wakari terminal, make a new directory "blog" and clone your blog repository from your fork using SSH, for example:
 ```
 mkdir $HOME/blog
