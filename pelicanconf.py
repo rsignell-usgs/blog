@@ -20,7 +20,7 @@ ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 # Title menu options.
-MENUITEMS = [('Archives', '/archives.html'),
+MENUITEMS = [('Archives', 'http://rsignell-usgs.github.io/blog/archives.html'),
              ('Home Page', 'http://rsignell-usgs.github.io')]
 NEWEST_FIRST_ARCHIVES = False
 
